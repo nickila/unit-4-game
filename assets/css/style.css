@@ -1,0 +1,50 @@
+/*
+
+.bench .card {
+    float: left;
+    position: relative;
+    bottom: 20px;
+    
+}
+.card {
+    width: 100px;
+    text-align: center;
+    margin: auto 100px;
+}
+*/
+.card {
+    margin: auto;
+    text-align: center;
+}
+body {
+    text-align: center;
+}
+.container {
+    text-align: center;
+    margin: auto;
+}
+#defender {
+    
+    text-align: center;
+    margin: auto;
+}
+
+#challenger {
+   
+    text-align: center;
+    margin: auto;
+}
+.row {
+    text-align: center;
+}
+#vs {
+    font-size: 50px;
+    height: 300px;
+}
+.ring {
+    margin: auto;
+    text-align: center;
+}
+.card-body {
+    margin: auto;
+}

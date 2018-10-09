@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Role Play Game</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="title">ROLE PLAY GAME</h1>
+            </div>
+        </div>
+        <div class="row" id="scoreboard">
+            <div class="col-md-6">
+                <h1 id="wins">WINS</h1>
+            </div>
+            <div class="col-md-6">
+                <h1 id="loss">LOSS</h1>
+            </div>
+        </div>
+        <div class="row ring">
+            <div class="col-md-4"  id="challenger"> 
+                <div class="card challengerCard" style="width: 12rem;">
+                    <div class="card-body challengerBody">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h1 id="vs">VS</h1>
+            </div>
+            <div class="col-md-4" id="defender">
+                <div class="card defenderCard" style="width: 12rem;">
+                    <div class="card-body defenderBody">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 id="message"></h2>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card benchCardA a" style="width: 12rem;">
+                        <img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a">
+                        <div class="card-body">
+                            <p class="card-text">Alpha</p>
+                            <p class="card-text" id="hpA">HP:200</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card benchCardB" style="width: 12rem;">
+                        <img class="card-img-top b" src="assets/images/b.png" alt="Card image cap" value="b">
+                        <div class="card-body">
+                            <p class="card-text">Beta</p>
+                            <p class="card-text" id="hpB">HP:200</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card benchCardC" style="width: 12rem;">
+                        <img class="card-img-top c" src="assets/images/c.png" alt="Card image cap" value="c">
+                        <div class="card-body">
+                            <p class="card-text">Cappa</p>
+                            <p class="card-text" id="hpC">HP:200</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card benchCardD" style="width: 12rem;">
+                        <img class="card-img-top d" src="assets/images/d.png" alt="Card image cap" value="d">
+                        <div class="card-body">
+                            <p class="card-text">Delta</p>
+                            <p class="card-text" id="hpD">HP:200</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>
