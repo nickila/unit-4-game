@@ -12,6 +12,10 @@
     margin: auto 100px;
 }
 */
+
+/*body {
+    background-image: url("../images/paper.jpg")
+}*/
 .card {
     margin: auto;
     text-align: center;
@@ -39,11 +43,12 @@ body {
 }
 #vs {
     font-size: 50px;
-    height: 300px;
+    
 }
 .ring {
     margin: auto;
     text-align: center;
+    height: 400px;
 }
 .card-body {
     margin: auto;

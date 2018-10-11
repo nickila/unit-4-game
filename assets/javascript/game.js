@@ -1,5 +1,25 @@
 $(document).ready(function () {
-    $("#message").html("Please choose your character!");
+//     var canClick = true;
+
+// $("#message").on("click", function() {
+// if (canClick) {
+//     canClick = false;
+//     doThings();
+//     setTimeout(function(){
+//         canClick = true;
+//     }, 5000);
+// }
+// });
+
+// function doThings(){
+//     console.log("CLICK");
+// }
+
+
+
+
+
+//function resetVars() {
     var playerA = {
         hp: 400,
         attack: 10,
@@ -33,6 +53,56 @@ $(document).ready(function () {
     var losses = 0;
     var busy = false;
 
+    $("#hpA").html("HP:" + playerA.hp);
+    $("#hpB").html("HP:" + playerB.hp);
+    $("#hpC").html("HP:" + playerC.hp);
+    $("#hpD").html("HP:" + playerD.hp);
+
+function resetAll() {
+    $(".benchCardA").show();
+    $(".benchCardB").show();
+    $(".benchCardC").show();
+    $(".benchCardD").show();
+    $(".challengerCard").html('<div class="card-body challengerBody"></div>');
+    playerA = {
+        hp: 400,
+        attack: 10,
+        attackCon: 10,
+        counter: 10,
+    }
+    playerB = {
+        hp: 300,
+        attack: 10,
+        attackCon: 10,
+        counter: 10,
+    }
+     playerC = {
+        hp: 200,
+        attack: 10,
+        attackCon: 10,
+        counter: 10,
+    }
+     playerD = {
+        hp: 100,
+        attack: 10,
+        attackCon: 10,
+        counter: 10,
+    }
+     challenger = {};
+     defender = {};
+     playerChosen = false;
+     defenderChosen = false;
+     points = 0;
+     busy = false;
+   // resetVars();
+};
+    
+
+
+
+
+$("#message").html("Please choose your character!");
+
     function addHp(challenger, defender) {
         if ((challenger.hp > 0) && (defender.hp > 0)) {
             defender.hp -= challenger.attack;
@@ -50,7 +120,14 @@ $(document).ready(function () {
             points++;
             console.log(points);
             if (points == 3) {
-                wins++
+                wins++;
+                resetAll();
+                
+                if (wins < 10){
+                    $("#wins").html("WINS:0" + wins);
+                }else{
+                    $("#wins").html("WINS:" + wins);
+                }
             }
             else {
                 return;
@@ -58,7 +135,15 @@ $(document).ready(function () {
             return;
         }
         else if ((challenger.hp <= 0) && (defender.hp > 0)) {
+            $(".defenderCard").html('<div class="card-body defenderBody"></div>');
             $("#message").html("GAME OVER!");
+            losses++
+            resetAll();
+            if (losses < 10){
+            $("#loss").html("LOSS:0" + losses);
+            }else{
+                $("#loss").html("LOSS:" + losses);
+            }
             return;
         }
     }
@@ -69,7 +154,7 @@ $(document).ready(function () {
         if ((playerChosen == true) && (defenderChosen == false)) {
             $(this).hide();
             $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a">');
-            $(".defenderBody").append('<p class="card-text name">Alpha</p><p class="card-text hp">HP:<span class="defenderHp">' + playerA.hp + '</span></p>');
+            $(".defenderBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="defenderHp">' + playerA.hp + '</span></p>');
             defenderChosen = true;
             $("#message").html("Press <b>A</b> to attack!");
             defender = playerA;
@@ -78,7 +163,7 @@ $(document).ready(function () {
         if ((playerChosen == false) && (defenderChosen == false)) {
             $(this).hide();
             $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a">');
-            $(".challengerBody").append('<p class="card-text name">Alpha</p><p class="card-text hp">HP:<span class="challengerHp">' + playerA.hp + '</span></p>');
+            $(".challengerBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="challengerHp">' + playerA.hp + '</span></p>');
             $("#message").html("Choose your opponent!");
             playerChosen = true;
             challenger = playerA;
@@ -92,7 +177,7 @@ $(document).ready(function () {
         if ((playerChosen == true) && (defenderChosen == false)) {
             $(this).hide();
             $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b">');
-            $(".defenderBody").append('<p class="card-text name">Bravo</p><p class="card-text hp">HP:<span class="defenderHp">' + playerB.hp + '</span></p>');
+            $(".defenderBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="defenderHp">' + playerB.hp + '</span></p>');
             defenderChosen = true;
             $("#message").html("Press <b>A</b> to attack!");
             defender = playerB;
@@ -101,7 +186,7 @@ $(document).ready(function () {
         if ((playerChosen == false) && (defenderChosen == false)) {
             $(this).hide();
             $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b">');
-            $(".challengerBody").append('<p class="card-text name">Bravo</p><p class="card-text hp">HP:<span class="challengerHp">' + playerB.hp + '</span></p>');
+            $(".challengerBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="challengerHp">' + playerB.hp + '</span></p>');
             $("#message").html("Choose your opponent!");
             playerChosen = true;
             challenger = playerB;
@@ -116,21 +201,18 @@ $(document).ready(function () {
         if ((playerChosen == true) && (defenderChosen == false)) {
             $(this).hide();
             $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c">');
-            $(".defenderBody").append('<p class="card-text name">Charlie</p><p class="card-text hp">HP:<span class="defenderHp">' + playerC.hp + '</span></p>');
+            $(".defenderBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="defenderHp">' + playerC.hp + '</span></p>');
             defenderChosen = true;
             $("#message").html("Press <b>A</b> to attack!");
             defender = playerC;
-            //console.log("defender: " + defender);
         }
         if ((playerChosen == false) && (defenderChosen == false)) {
             $(this).hide();
             $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c">');
-            $(".challengerBody").append('<p class="card-text name">Charlie</p><p class="card-text hp">HP:<span class="challengerHp">' + playerC.hp + '</span></p>');
+            $(".challengerBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="challengerHp">' + playerC.hp + '</span></p>');
             $("#message").html("Choose your opponent!");
             playerChosen = true;
             challenger = playerC;
-            //console.log("challenger: " + challenger);
-
         } else {
             return;
         }
@@ -139,27 +221,21 @@ $(document).ready(function () {
         if ((playerChosen == true) && (defenderChosen == false)) {
             $(this).hide();
             $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d">');
-            $(".defenderBody").append('<p class="card-text name">Delta</p><p class="card-text hp">HP:<span class="defenderHp">' + playerD.hp + '</span></p>');
+            $(".defenderBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="defenderHp">' + playerD.hp + '</span></p>');
             defenderChosen = true;
             $("#message").html("Press <b>A</b> to attack!");
             defender = playerD;
-            //console.log("defender: " + defender);
         }
         if ((playerChosen == false) && (defenderChosen == false)) {
             $(this).hide();
             $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d">');
-            $(".challengerBody").append('<p class="card-text name">Delta</p><p class="card-text hp">HP:<span class="challengerHp">' + playerD.hp + '</span></p>');
+            $(".challengerBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="challengerHp">' + playerD.hp + '</span></p>');
             $("#message").html("Choose your opponent!");
             playerChosen = true;
             challenger = playerD;
-            //console.log("challenger: " + challenger);
-
         } else {
             return;
         }
-
-
-
     });
 
 
