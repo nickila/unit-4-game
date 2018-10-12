@@ -70,7 +70,7 @@ $(document).ready(function () {
             attack: 10,
             attackCon: 10,
             counter: 10,
-            pic2: ('<img class="card-img-top" src="assets/images/a2.png" alt="Card image cap" value="a">'),
+
         }
         playerB = {
             hp: 300,
@@ -95,10 +95,10 @@ $(document).ready(function () {
         playerChosen = false;
         defenderChosen = false;
         points = 0;
-        busy = false;
+        //busy = false;
         // resetVars();
-        var image;
         
+
     };
 
 
@@ -106,66 +106,84 @@ $(document).ready(function () {
 
 
     $("#message").html("Please choose your character!");
+
     function change() {
-        image = document.getElementById('imgSwitch');
+        var imageChal = document.getElementById('imgSwitch');
         if (challenger == playerA) {
-            image.src = "assets/images/a2.png";
-            setTimeout(function(){
-           image.src = "assets/images/a.png";
+            imageChal.src = "assets/images/a2.png";
+            setTimeout(function () {
+                imageChal.src = "assets/images/a.png";
             }, 500);
         }
         if (challenger == playerB) {
-            image.src = "assets/images/b2.png"
-            setTimeout(function(){
-                image.src = "assets/images/b.png";
-                 }, 500);
+            imageChal.src = "assets/images/b2.png"
+            setTimeout(function () {
+                imageChal.src = "assets/images/b.png";
+            }, 500);
         }
         if (challenger == playerC) {
-            image.src = "assets/images/c2.png";
-            setTimeout(function(){
-                image.src = "assets/images/c.png";
-                 }, 500);
+            imageChal.src = "assets/images/c2.png";
+            setTimeout(function () {
+                imageChal.src = "assets/images/c.png";
+            }, 500);
         }
         if (challenger == playerD) {
-            image.src = "assets/images/d2.png"
-            setTimeout(function(){
-                image.src = "assets/images/d.png";
-                 }, 500);
+            imageChal.src = "assets/images/d2.png"
+            setTimeout(function () {
+                imageChal.src = "assets/images/d.png";
+            }, 500);
         }
-       
-    
     }
 
-    $(document).keyup(function (event) {
-        if ((event.which == 65) && (playerChosen) && (defenderChosen) && (canClick)) {
-            canClick = false;
-            addHp(challenger, defender);
+    function changeDefender() {
+        if (defender.hp > 0) {
+            var imageDef = document.getElementById('imgSwitchD');
+            if (defender == playerA) {
+                imageDef.src = "assets/images/a2.png";
+                setTimeout(function () {
+                    imageDef.src = "assets/images/a.png";
+                }, 500);
+            }
+            if (defender == playerB) {
+                imageDef.src = "assets/images/b2.png"
+                setTimeout(function () {
+                    imageDef.src = "assets/images/b.png";
+                }, 500);
+            }
+            if (defender == playerC) {
+                imageDef.src = "assets/images/c2.png";
+                setTimeout(function () {
+                    imageDef.src = "assets/images/c.png";
+                }, 500);
+            }
+            if (defender == playerD) {
+                imageDef.src = "assets/images/d2.png"
+                setTimeout(function () {
+                    imageDef.src = "assets/images/d.png";
+                }, 500);
+            }
         }
-    });
-
-
+    }
+    
 
     function addHp(challenger, defender) {
-
-
-        if ((challenger.hp > 0) && (defender.hp > 0)) {
-            // console.log(challenger.pic2);
-            // setTimeout(function () {
-            //     $(".challengerCard").html('<div class="card-body challengerBody"></div>');
-            //     $(".challengerCard").text(challenger.pic2);
-            //     }, 1000); //waits 1000 miliseconds (1 sec)
+        if ((challenger.hp > 0) && (defender.hp > 0) && (canClick)) {
+            canClick = false;
             defender.hp -= challenger.attack;
             challenger.attack += challenger.attackCon; //the con version is always worth the original value.
             challenger.hp -= defender.attack;
-            setTimeout (function(){
+            setTimeout(function () {
                 canClick = true;
-                }, 1000);
+            }, 2000);
             $(".challengerHp").html(challenger.hp);
             $(".defenderHp").html(defender.hp);
-            console.log("chp: " + challenger.hp);
-            console.log("dhp: " + defender.hp);
             change();
+            setTimeout(function () { 
+                changeDefender();
+            }, 3000);
+
         }
+
         if ((challenger.hp > 0) && (defender.hp <= 0)) {
             $(".defenderCard").html('<div class="card-body defenderBody"></div>');
             defenderChosen = false;
@@ -175,7 +193,6 @@ $(document).ready(function () {
             if (points == 3) {
                 wins++;
                 resetAll();
-
                 if (wins < 10) {
                     $("#wins").html("WINS:0" + wins);
                 } else {
@@ -189,6 +206,7 @@ $(document).ready(function () {
         }
         else if ((challenger.hp <= 0) && (defender.hp > 0)) {
             $(".defenderCard").html('<div class="card-body defenderBody"></div>');
+
             $("#message").html("GAME OVER!");
             losses++
             resetAll();
@@ -202,108 +220,113 @@ $(document).ready(function () {
     }
 
 
-    $(".benchCardA").click(function () {
-        //the top of each function sends player to DEFENDER spot. This function is for A, next for B and so on.
-        if ((playerChosen == true) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a" id="imgSwitch" onclick="change();">');
-            $(".defenderBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="defenderHp">' + playerA.hp + '</span></p>');
-            defenderChosen = true;
-            $("#message").html("Press <b>A</b> to attack!");
-            defender = playerA;
-        }
-        //the bottom of each function sends player to CHALLENGER spot.
-        if ((playerChosen == false) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a" id="imgSwitch" onclick="change();">');
-            $(".challengerBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="challengerHp">' + playerA.hp + '</span></p>');
-            $("#message").html("Choose your opponent!");
-            playerChosen = true;
-            challenger = playerA;
-            //this line stops player from doing anything to cards if both above conditions were met.
-        } else {
-            return;
-        }
+        $(".benchCardA").click(function () {
+            //the top of each function sends player to DEFENDER spot. This function is for A, next for B and so on.
+            if ((playerChosen == true) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a" id="imgSwitchD" onclick="change();">');
+                $(".defenderBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="defenderHp">' + playerA.hp + '</span></p>');
+                defenderChosen = true;
+                $("#message").html("Press <b>A</b> to attack!");
+                defender = playerA;
+            }
+            //the bottom of each function sends player to CHALLENGER spot.
+            if ((playerChosen == false) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a" id="imgSwitch" onclick="change();">');
+                $(".challengerBody").append('<p class="card-text name">Player A</p><p class="card-text hp">HP:<span class="challengerHp">' + playerA.hp + '</span></p>');
+                $("#message").html("Choose your opponent!");
+                playerChosen = true;
+                challenger = playerA;
+                //this line stops player from doing anything to cards if both above conditions were met.
+            } else {
+                return;
+            }
+        });
+        $(".benchCardB").click(function () {
+            //the top of each function sends player to DEFENDER spot. This function is for A, next for B and so on.
+            if ((playerChosen == true) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b" id="imgSwitchD" onclick="change();">');
+                $(".defenderBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="defenderHp">' + playerB.hp + '</span></p>');
+                defenderChosen = true;
+                $("#message").html("Press <b>A</b> to attack!");
+                defender = playerB;
+            }
+            //the bottom of each function sends player to CHALLENGER spot.
+            if ((playerChosen == false) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b" id="imgSwitch" onclick="change();">');
+                $(".challengerBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="challengerHp">' + playerB.hp + '</span></p>');
+                $("#message").html("Choose your opponent!");
+                playerChosen = true;
+                challenger = playerB;
+                //this line stops player from doing anything to cards if both above conditions were met.
+            } else {
+                return;
+            }
+        });
+
+
+        $(".benchCardC").click(function () {
+            if ((playerChosen == true) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c" id="imgSwitchD" onclick="change();">');
+                $(".defenderBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="defenderHp">' + playerC.hp + '</span></p>');
+                defenderChosen = true;
+                $("#message").html("Press <b>A</b> to attack!");
+                defender = playerC;
+            }
+            if ((playerChosen == false) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c" id="imgSwitch" onclick="change();">');
+                $(".challengerBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="challengerHp">' + playerC.hp + '</span></p>');
+                $("#message").html("Choose your opponent!");
+                playerChosen = true;
+                challenger = playerC;
+            } else {
+                return;
+            }
+        });
+        $(".benchCardD").click(function () {
+            if ((playerChosen == true) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d" id="imgSwitchD" onclick="change();">');
+                $(".defenderBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="defenderHp">' + playerD.hp + '</span></p>');
+                defenderChosen = true;
+                $("#message").html("Press <b>A</b> to attack!");
+                defender = playerD;
+            }
+            if ((playerChosen == false) && (defenderChosen == false)) {
+                $(this).hide();
+                $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d" id="imgSwitch" onclick="change();">');
+                $(".challengerBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="challengerHp">' + playerD.hp + '</span></p>');
+                $("#message").html("Choose your opponent!");
+                playerChosen = true;
+                challenger = playerD;
+            } else {
+                return;
+            }
+        });
+
+        $(document).keyup(function (event) {
+            if ((event.which == 65) && (playerChosen) && (defenderChosen)) {
+                
+                addHp(challenger, defender);
+            }
+        });
+
+
+
+
     });
-    $(".benchCardB").click(function () {
-        //the top of each function sends player to DEFENDER spot. This function is for A, next for B and so on.
-        if ((playerChosen == true) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b" id="imgSwitch" onclick="change();">');
-            $(".defenderBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="defenderHp">' + playerB.hp + '</span></p>');
-            defenderChosen = true;
-            $("#message").html("Press <b>A</b> to attack!");
-            defender = playerB;
-        }
-        //the bottom of each function sends player to CHALLENGER spot.
-        if ((playerChosen == false) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/b.png" alt="Card image cap" value="b" id="imgSwitch" onclick="change();">');
-            $(".challengerBody").append('<p class="card-text name">Player B</p><p class="card-text hp">HP:<span class="challengerHp">' + playerB.hp + '</span></p>');
-            $("#message").html("Choose your opponent!");
-            playerChosen = true;
-            challenger = playerB;
-            //this line stops player from doing anything to cards if both above conditions were met.
-        } else {
-            return;
-        }
-    });
-
-
-    $(".benchCardC").click(function () {
-        if ((playerChosen == true) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c" id="imgSwitch" onclick="change();">');
-            $(".defenderBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="defenderHp">' + playerC.hp + '</span></p>');
-            defenderChosen = true;
-            $("#message").html("Press <b>A</b> to attack!");
-            defender = playerC;
-        }
-        if ((playerChosen == false) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/c.png" alt="Card image cap" value="c" id="imgSwitch" onclick="change();">');
-            $(".challengerBody").append('<p class="card-text name">Player C</p><p class="card-text hp">HP:<span class="challengerHp">' + playerC.hp + '</span></p>');
-            $("#message").html("Choose your opponent!");
-            playerChosen = true;
-            challenger = playerC;
-        } else {
-            return;
-        }
-    });
-    $(".benchCardD").click(function () {
-        if ((playerChosen == true) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".defenderCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d" id="imgSwitch" onclick="change();">');
-            $(".defenderBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="defenderHp">' + playerD.hp + '</span></p>');
-            defenderChosen = true;
-            $("#message").html("Press <b>A</b> to attack!");
-            defender = playerD;
-        }
-        if ((playerChosen == false) && (defenderChosen == false)) {
-            $(this).hide();
-            $(".challengerCard").prepend('<img class="card-img-top" src="assets/images/d.png" alt="Card image cap" value="d" id="imgSwitch" onclick="change();">');
-            $(".challengerBody").append('<p class="card-text name">Player D</p><p class="card-text hp">HP:<span class="challengerHp">' + playerD.hp + '</span></p>');
-            $("#message").html("Choose your opponent!");
-            playerChosen = true;
-            challenger = playerD;
-        } else {
-            return;
-        }
-    });
-
-
-   
-
-
-
-
 
     //This function calls on the two characters. It says if a challenger and a defender were chosen and the player
     //hits the A key (capital or lower) it will do what we tell it to do.
 
 
 
-});
+
 
 
 
