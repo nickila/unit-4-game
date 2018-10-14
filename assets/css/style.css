@@ -3,47 +3,51 @@
 }
 
 .card-img-top {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 body {
     background-image: url("../images/paper.jpg");
     font-family: 'Coming Soon', Arial, Helvetica, sans-serif;
 }
+
 .title {
     /* font-size: 90px;*/
     margin-top: 20px;
     height: 40px;
 }
+
 .card {
     margin: auto;
     text-align: center;
     background-color: none;
 }
+
 body {
     text-align: center;
     color: rgb(36, 36, 100);
 }
+
+.raise {
+    margin-bottom: 500px;
+}
+
 .container {
     text-align: center;
     margin: auto;
 }
+
 #defender {
     height: 300px;
     text-align: center;
     margin: auto;
 }
+
 #play-again {
     font-size: 75px;
     margin-top: -200px;
     cursor: pointer;
 }
-/* .card-img-top {
-    width: 240px;
-} */
-/* .defenderCard {
-    width: 240px;
-} */
 
 #challenger {
    height: 300px;
@@ -53,10 +57,7 @@ body {
 .row {
     text-align: center;
 }
-/* #vs {
-    font-size: 50px;
-    
-} */
+
 .ring {
     margin: auto;
     text-align: center;
@@ -93,12 +94,7 @@ body {
     margin-right: auto;
     margin-bottom: 130px;
 }
-/* #message {
-    margin: 15px;
-    margin-bottom: 50px;
-    font-size: 50px;
-    letter-spacing: 10px;
-} */
+
 #wins {
     margin-top: 50px;
     margin-bottom: 30px;
@@ -108,18 +104,8 @@ body {
     margin-bottom: 30px;
 }
 
-/* .bottom {
-    position: relative;
-    text-align: center;
-}
-
-.fixed-bottom {
-    margin-bottom: 50px;
-} */
-
 #message {
-    
+    margin-bottom: 15px;
     font-size: 60px;
-    letter-spacing: 10px;
-    
+    letter-spacing: 10px;    
 }
