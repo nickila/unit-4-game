@@ -111,27 +111,27 @@ $(document).ready(function () {
         var imageChal = document.getElementById('imgSwitch');
         if (challenger == playerA) {
             imageChal.src = "assets/images/a2.png";
-            setTimeout(function () {
+            // setTimeout(function () {
                 imageChal.src = "assets/images/a.png";
-            }, 500);
+            // }, 500);
         }
         if (challenger == playerB) {
             imageChal.src = "assets/images/b2.png"
-            setTimeout(function () {
+            // setTimeout(function () {
                 imageChal.src = "assets/images/b.png";
-            }, 500);
+            // }, 500);
         }
         if (challenger == playerC) {
             imageChal.src = "assets/images/c2.png";
-            setTimeout(function () {
+            // setTimeout(function () {
                 imageChal.src = "assets/images/c.png";
-            }, 500);
+            // }, 500);
         }
         if (challenger == playerD) {
             imageChal.src = "assets/images/d2.png"
-            setTimeout(function () {
+            // setTimeout(function () {
                 imageChal.src = "assets/images/d.png";
-            }, 500);
+            // }, 500);
         }
     }
 
@@ -140,47 +140,47 @@ $(document).ready(function () {
             var imageDef = document.getElementById('imgSwitchD');
             if (defender == playerA) {
                 imageDef.src = "assets/images/a2.png";
-                setTimeout(function () {
+                // setTimeout(function () {
                     imageDef.src = "assets/images/a.png";
-                }, 500);
+                // }, 500);
             }
             if (defender == playerB) {
                 imageDef.src = "assets/images/b2.png"
-                setTimeout(function () {
+                // setTimeout(function () {
                     imageDef.src = "assets/images/b.png";
-                }, 500);
+                // }, 500);
             }
             if (defender == playerC) {
-                imageDef.src = "assets/images/c2.png";
-                setTimeout(function () {
+                // imageDef.src = "assets/images/c2.png";
+                // setTimeout(function () {
                     imageDef.src = "assets/images/c.png";
-                }, 500);
+                // }, 500);
             }
             if (defender == playerD) {
-                imageDef.src = "assets/images/d2.png"
-                setTimeout(function () {
+                // imageDef.src = "assets/images/d2.png"
+                // setTimeout(function () {
                     imageDef.src = "assets/images/d.png";
-                }, 500);
+                // }, 500);
             }
         }
     }
-    
+    // && (canClick)
 
     function addHp(challenger, defender) {
-        if ((challenger.hp > 0) && (defender.hp > 0) && (canClick)) {
+        if ((challenger.hp > 0) && (defender.hp > 0)) {
             canClick = false;
             defender.hp -= challenger.attack;
             challenger.attack += challenger.attackCon; //the con version is always worth the original value.
             challenger.hp -= defender.attack;
-            setTimeout(function () {
-                canClick = true;
-            }, 2000);
+            // setTimeout(function () {
+                // canClick = true;
+            // }, 2000);
             $(".challengerHp").html(challenger.hp);
             $(".defenderHp").html(defender.hp);
             change();
-            setTimeout(function () { 
+            // setTimeout(function () { 
                 changeDefender();
-            }, 3000);
+            // }, 3000);
 
         }
 
