@@ -1,64 +1,125 @@
-/*
-
 .bench .card {
-    float: left;
-    position: relative;
-    bottom: 20px;
-    
+    background-color: none;   
 }
-.card {
-    width: 100px;
-    text-align: center;
-    margin: auto 100px;
-}
-*/
 
-/*body {
-    background-image: url("../images/paper.jpg")
-}*/
+.card-img-top {
+    margin-top: 20px;
+}
+
+body {
+    background-image: url("../images/paper.jpg");
+    font-family: 'Coming Soon', Arial, Helvetica, sans-serif;
+}
+.title {
+    /* font-size: 90px;*/
+    margin-top: 20px;
+    height: 40px;
+}
 .card {
     margin: auto;
     text-align: center;
-    cursor: pointer;
+    background-color: none;
 }
 body {
     text-align: center;
+    color: rgb(36, 36, 100);
 }
 .container {
     text-align: center;
     margin: auto;
 }
 #defender {
-    
+    height: 300px;
     text-align: center;
     margin: auto;
 }
+#play-again {
+    font-size: 75px;
+    color: rgb(233, 27, 78);
+    margin-top: -200px;
+}
+/* .card-img-top {
+    width: 240px;
+} */
+/* .defenderCard {
+    width: 240px;
+} */
 
 #challenger {
-   
+   height: 300px;
     text-align: center;
     margin: auto;
 }
 .row {
     text-align: center;
 }
-#vs {
+/* #vs {
     font-size: 50px;
     
-}
+} */
 .ring {
     margin: auto;
     text-align: center;
-    height: 400px;
+    height: 320px;
 }
 .card-body {
-    margin: auto;
+    margin: 0;
+    padding: 3px;
 }
 .name {
-    font-size: 40px;
+    font-size: 30px;
     margin: 0;
     padding: 0;
 }
 .hp {
     font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.challenger-attack-points {
+    margin-bottom: 280px;
+    margin-left: -130px;
+    font-size: 65px;
+}
+.defender-attack-points {
+    margin-bottom: 150px;
+    margin-right: -130px;
+    font-size: 65px;   
+}
+   
+.clouds {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 130px;
+}
+/* #message {
+    margin: 15px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    letter-spacing: 10px;
+} */
+#wins {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+#loss {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* .bottom {
+    position: relative;
+    text-align: center;
+}
+
+.fixed-bottom {
+    margin-bottom: 50px;
+} */
+
+#message {
+    
+    font-size: 60px;
+    letter-spacing: 10px;
+    
 }

@@ -7,88 +7,102 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <div class="container">
+        <audio id="myAudio">
+            <source src="assets/sounds/f1.mp3" type="audio/mp3">
+        </audio>
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <h1 id="title">ROLE PLAY GAME</h1>
-            </div>
-        </div>
-        <div class="row" id="scoreboard">
-            <div class="col-md-6">
+            <div class="col-2">
                 <h1 id="wins">WINS:00</h1>
             </div>
-            <div class="col-md-6">
-                <h1 id="loss">LOSS:00</h1>
+            <div class="col-8 title">
+                <!-- <h1 class="title">DOODLE POOTS</h1>-->
+                <img src="assets/images/doodlepoots.png">
             </div>
-        </div>
-        <div class="row ring">
-            <div class="col-md-3"  id="challenger"> 
-                <div class="card challengerCard" style="width: 12rem;">
-                    <div class="card-body challengerBody">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <h1 id="vs">VS</h1>
-            </div>
-            <div class="col-md-3" id="defender">
-                <div class="card defenderCard" style="width: 12rem;">
-                    <div class="card-body defenderBody">
-                    </div>
-                </div>
+            <div class="col-2">
+                <h1 id="loss">LOSSES:00</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <h2 id="message"></h2>
-            </div>
-        </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card benchCardA a" style="width: 12rem;">
-                        <img class="card-img-top" src="assets/images/a.png" alt="Card image cap" value="a">
-                        <div class="card-body benchCardBodyA">
-                            <p class="card-text name">Player A</p>
-                            <p class="card-text hp" id="hpA"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card benchCardB" style="width: 12rem;">
-                        <img class="card-img-top b" src="assets/images/b.png" alt="Card image cap" value="b">
-                        <div class="card-body benchCardBodyB">
-                            <p class="card-text name">Player B</p>
-                            <p class="card-text hp" id="hpB"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card benchCardC" style="width: 12rem;">
-                        <img class="card-img-top c" src="assets/images/c.png" alt="Card image cap" value="c">
-                        <div class="card-body">
-                            <p class="card-text name">Player C</p>
-                            <p class="card-text hp" id="hpC"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card benchCardD" style="width: 12rem;">
-                        <img class="card-img-top d" src="assets/images/d.png" alt="Card image cap" value="d">
-                        <div class="card-body">
-                            <p class="card-text name">Player D</p>
-                            <p class="card-text hp" id="hpD"></p>
-                        </div>
+            <!--Everything from title under will fall here.-->
+            <div class="col-2">
+                <div class="benchCardB bench-doodle">
+                    <img src="assets/images/b.png" alt="image cap">
+                    <div class="card-body benchCardBodyB">
+                        <p class="card-text name">Gregory</p>
+                        <p class="card-text hp" id="hpB"></p>
                     </div>
                 </div>
             </div>
+            <div class="col-3" id="challenger">
+                <div class="challengerCard">
+                    <div class="challengerBody">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h1 class="challenger-attack-points fixed-bottom"></h1>
+                <br />
+                <div class="clouds">
+
+                </div>
+                <h1 class="defender-attack-points fixed-bottom"></h1>
+            </div>
+            <div class="col-3" id="defender">
+                <div class="defenderCard">
+                    <div class="defenderBody">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="benchCardC bench-doodle">
+                    <img src="assets/images/c.png" alt="image cap">
+                    <div class="card-body benchCardBodyC">
+                        <p class="card-text name">Chloe</p>
+                        <p class="card-text hp" id="hpC"></p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row bottom">
+            <div class="col-2">
+                <div class="benchCardA bench-doodle">
+                    <img src="assets/images/a.png" alt="image cap">
+                    <div class="card-body benchCardBodyA">
+                        <p class="card-text name">Coney</p>
+                        <p class="card-text hp" id="hpA"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <h2 id="message" class="fixed-bottom"></h2>
+                <h2 id="play-again"></h2>
+            </div>
+            <div class="col-2">
+                <div class="benchCardD bench-doodle">
+                    <img src="assets/images/d.png" alt="image cap">
+                    <div class="card-body benchCardBodyAD">
+                        <p class="card-text name">Inna</p>
+                        <p class="card-text hp" id="hpD"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
     </div>
     <script src="assets/javascript/game.js"></script>
 </body>
