@@ -21,28 +21,28 @@ $(document).ready(function () {
 
     //function resetVars() {
     var playerA = {
-        hp: 180,
-        attack: 8,
-        attackCon: 8,
-        counter: 5,
-    }
-    var playerB = {
-        hp: 160,
-        attack: 7,
-        attackCon: 7,
-        counter: 6,
-    }
-    var playerC = {
-        hp: 130,
-        attack: 10,
-        attackCon: 10,
-        counter: 6,
-    }
-    var playerD = {
         hp: 150,
         attack: 6,
         attackCon: 6,
+        counter: 15,
+    }
+    var playerB = {
+        hp: 160,
+        attack: 6,
+        attackCon: 6,
+        counter: 15,
+    }
+    var playerC = {
+        hp: 120,
+        attack: 10,
+        attackCon: 10,
         counter: 8,
+    }
+    var playerD = {
+        hp: 130,
+        attack: 7,
+        attackCon: 7,
+        counter: 13,
     }
     var challenger = {};
     var defender = {};
@@ -67,29 +67,30 @@ $(document).ready(function () {
         $(".benchCardC").show();
         $(".benchCardD").show();
         $(".challengerCard").html('<div class="card-body challengerBody"></div>');
+        $(".defenderCard").html('<div class="card-body defenderBody"></div>');
             playerA = {
             hp: 180,
             attack: 8,
             attackCon: 8,
-            counter: 5,
+            counter: 10,
         }
             playerB = {
             hp: 160,
-            attack: 7,
-            attackCon: 7,
-            counter: 6,
+            attack: 6,
+            attackCon: 6,
+            counter: 15,
         }
             playerC = {
-            hp: 130,
+            hp: 120,
             attack: 10,
             attackCon: 10,
-            counter: 6,
+            counter: 8,
         }
             playerD = {
             hp: 150,
-            attack: 6,
-            attackCon: 6,
-            counter: 8,
+            attack: 8,
+            attackCon: 8,
+            counter: 10,
         }
         challenger = {};
         defender = {};
@@ -180,12 +181,14 @@ $(document).ready(function () {
     
     function addHp(challenger, defender) {
         if ((challenger.hp > 0) && (defender.hp > 0)) {
-            canClick = false;
+            //canClick = false;
+            var x = defender.hp;
             defender.hp -= challenger.attack;
             challenger.attack += challenger.attackCon; //the con version is always worth the original value.
-            challenger.hp -= defender.attack;
+            challenger.hp -= defender.counter;
+            var y = defender.hp;
             playAudio();
-            $(".challenger-attack-points").html(challenger.attack);
+            $(".challenger-attack-points").html(-(y-x));
             $(".defender-attack-points").html(defender.attack);
             $(".clouds").append('<img class="fixed-bottom clouds" src="assets/images/poot.png">');
             setTimeout(function () {
@@ -210,8 +213,8 @@ $(document).ready(function () {
             points++;
             if (points == 3) {
                 wins++;
-                $("#message").html("YOU WIN!!!");
-                $("#play-again").html("PLAY AGAIN");
+                $("#message").html("");
+                $("#play-again").html("*YOU WIN!!!*<br />click here<br />to<br />play again");
                 //resetAll();
                 if (wins < 10) {
                     $("#wins").html("WINS:0" + wins);
@@ -225,12 +228,11 @@ $(document).ready(function () {
             }
             return;
         }
-        else if ((challenger.hp <= 0) && (defender.hp > 0)) {
-            $(".defenderCard").html('<div class="card-body defenderBody"></div>');
-
-            $("#message").html("GAME OVER");
+        else if ((challenger.hp <= 0)) {
+            $(".challengerCard").html('<div class="card-body defenderBody"></div>');
+            $("#play-again").html("*YOU LOSE*<br />click here<br />to<br />play again");
+            $("#message").html("");
             losses++
-            resetAll();
             if (losses < 10) {
                 $("#loss").html("LOSSES:0" + losses);
             } else {
@@ -238,6 +240,7 @@ $(document).ready(function () {
             }
             return;
         }
+
     }
 
 
@@ -353,177 +356,6 @@ $(document).ready(function () {
 
     //This function calls on the two characters. It says if a challenger and a defender were chosen and the player
     //hits the A key (capital or lower) it will do what we tell it to do.
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //         if ((playerA.hp > 0) && (playerB.hp > 0)) {
-    //             if ((challenger == "a") && (defender == "b")) {
-
-    //                 playerB.hp -= (playerA.attack);
-    //                 playerA.attack += playerA.attackCon; //the con version is always worth the original value.
-    //                 $("#hpB").html(playerB.hp);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Player B fights back!");
-    //                 }, 1000); //waits 1000 miliseconds (1 sec)
-    //                 playerA.hp -= playerB.attack;
-    //                 setTimeout(function () {
-    //                     $("#hpA").html(playerA.hp);
-    //                 }, 2000);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Press <b>A</b> to attack!");
-    //                 }, 2500);
-    //             } else {
-    //                 return;
-    //             }
-    //         }
-    //         if ((playerA.hp > 0) && (playerB.hp <= 0)) {
-    //             $("#message").html("YOU WIN!");
-    //             setTimeout(function () {
-    //                 $("#message").html("Fight another!");
-    //                 //change character to red X or something.
-    //             }, 1000);
-    //             $(".defenderCard").html("");
-    //             $(".defenderCard").append('<div class="card-body defenderBody">');
-    //             defenderChosen = false;
-    //             playerA.attack = 10;
-    //             return;
-
-    //         }
-    //         else if ((playerA.hp <= 0) && (playerB.hp > 0)) {
-    //             $("#message").html("GAME OVER!");
-    //             return;
-    //         }
-
-    //         if ((playerA.hp > 0) && (playerB.hp > 0)) {
-    //             if ((challenger == "a") && (defender == "c")) {
-
-    //                 playerC.hp -= (playerA.attack);
-    //                 playerA.attack += playerA.attackCon; //the con version is always worth the original value.
-    //                 $("#hpC").html(playerB.hp);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Player C fights back!");
-    //                 }, 1000); //waits 1000 miliseconds (1 sec)
-    //                 playerA.hp -= playerC.attack;
-    //                 setTimeout(function () {
-    //                     $("#hpA").html(playerA.hp);
-    //                 }, 2000);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Press <b>A</b> to attack!");
-    //                 }, 2500);
-    //             } else {
-    //                 return;
-    //             }
-    //         }
-    //         if ((playerA.hp > 0) && (playerC.hp <= 0)) {
-    //             $("#message").html("YOU WIN!");
-    //             setTimeout(function () {
-    //                 $("#message").html("Fight another!");
-    //                 //change character to red X or something.
-    //             }, 1000);
-    //             $(".defenderCard").html("");
-    //             $(".defenderBody").html("");
-    //             defenderChosen = false;
-    //             return;
-    //         }
-    //         else if ((playerA.hp <= 0) && (playerC.hp > 0)) {
-    //             $("#message").html("GAME OVER!");
-    //             return;
-    //         }
-
-
-    //         if ((playerA.hp > 0) && (playerD.hp > 0)) {
-    //             if ((challenger == "a") && (defender == "b")) {
-
-    //                 playerD.hp -= (playerA.attack);
-    //                 playerA.attack += playerA.attackCon; //the con version is always worth the original value.
-    //                 $("#hpB").html(playerD.hp);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Player B fights back!");
-    //                 }, 1000); //waits 1000 miliseconds (1 sec)
-    //                 playerA.hp -= playerD.attack;
-    //                 setTimeout(function () {
-    //                     $("#hpA").html(playerA.hp);
-    //                 }, 2000);
-    //                 setTimeout(function () {
-    //                     $("#message").html("Press <b>A</b> to attack!");
-    //                 }, 2500);
-    //             } else {
-    //                 return;
-    //             }
-    //         }
-    //         if ((playerA.hp > 0) && (playerD.hp <= 0)) {
-    //             $("#message").html("YOU WIN!");
-    //             setTimeout(function () {
-    //                 $("#message").html("Fight another!");
-    //                 //change character to red X or something.
-    //             }, 1000);
-    //             $(".defenderCard").html("");
-    //             $(".defenderBody").html("");
-    //             defenderChosen = false;
-    //             return;
-
-    //         }
-    //         else if ((playerA.hp <= 0) && (playerD.hp > 0)) {
-    //             $("#message").html("GAME OVER!");
-    //             return;
-    //         }
-    //     }
-    // });
-    // if ((challenger == "a") && (defender == "c")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "a") && (defender == "d")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "b") && (defender == "a")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "b") && (defender == "c")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "b") && (defender == "d")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "c") && (defender == "a")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "c") && (defender == "b")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "c") && (defender == "d")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "d") && (defender == "a")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "d") && (defender == "b")) {
-    //     score = (player.hp - player.attack)
-    // }
-    // if ((challenger == "d") && (defender == "c")) {
-    //     score = (player.hp - player.attack)
-    // }
-
-
-
-    //     console.log("slow-jam " + challenger);
-    //     console.log("funky " + defender);
-    //     } else {
-    //         console.log("nope")
-    //     }
-    // });     
-
-
-
 
         //$elect the player from challenger position by saying 'when attack button is pressed, remove 10 from defender's
        //hp, then after something, maybe a second or maybe after user clicks something, take the defender's attack point value

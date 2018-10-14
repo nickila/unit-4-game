@@ -35,8 +35,8 @@ body {
 }
 #play-again {
     font-size: 75px;
-    color: rgb(233, 27, 78);
     margin-top: -200px;
+    cursor: pointer;
 }
 /* .card-img-top {
     width: 240px;
